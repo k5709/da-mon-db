@@ -3,16 +3,17 @@ import React from "react";
 const CardList = ({ cards, onAddToList }) => {
   return (
     <div className="container mx-auto p-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {/* Flexbox for horizontal layout and responsiveness */}
+      <div className="flex flex-wrap justify-center gap-6">
         {cards.map((card) => (
-          <div 
-            key={card.id} 
-            className="border rounded-xl p-4 shadow-lg bg-white transition-transform transform hover:scale-105 hover:shadow-xl"
+          <div
+            key={card.id}
+            className="w-full sm:w-72 md:w-80 lg:w-96 border rounded-xl p-4 shadow-lg bg-white transition-transform transform hover:scale-105 hover:shadow-xl"
           >
             {/* Card Image */}
-            <img 
-              src={card.images.small} 
-              alt={card.name} 
+            <img
+              src={card.images.small}
+              alt={card.name}
               className="w-full h-48 object-contain rounded-lg"
             />
 
@@ -21,9 +22,15 @@ const CardList = ({ cards, onAddToList }) => {
 
             {/* Card Details */}
             <div className="mt-2 text-gray-600 text-sm">
-              <p><span className="font-semibold">Set:</span> {card.set || "Unknown"}</p>
-              <p><span className="font-semibold">Rarity:</span> {card.rarity || "Unknown"}</p>
-              <p><span className="font-semibold">HP:</span> {card.hp || "N/A"}</p>
+              <p>
+                <span className="font-semibold">Set:</span> {card.set || "Unknown"}
+              </p>
+              <p>
+                <span className="font-semibold">Rarity:</span> {card.rarity || "Unknown"}
+              </p>
+              <p>
+                <span className="font-semibold">HP:</span> {card.hp || "N/A"}
+              </p>
             </div>
 
             {/* Evolution Info */}
@@ -39,7 +46,9 @@ const CardList = ({ cards, onAddToList }) => {
                 <p className="text-gray-800 font-semibold">Attacks:</p>
                 <ul className="list-disc list-inside text-sm text-gray-700">
                   {card.attacks.map((attack, index) => (
-                    <li key={index}>{attack.name} ({attack.damage} DMG)</li>
+                    <li key={index}>
+                      {attack.name} ({attack.damage} DMG)
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -67,7 +76,7 @@ const CardList = ({ cards, onAddToList }) => {
             )}
 
             {/* Add to List Button */}
-            <button 
+            <button
               className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-all"
               onClick={() => onAddToList(card)}
             >

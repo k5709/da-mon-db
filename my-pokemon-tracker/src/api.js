@@ -6,15 +6,20 @@ export const fetchPokemonCards = async (query) => {
     id: card.id,
     name: card.name,
     images: card.images, 
-    set: card.set?.name, // ✅ Set name (e.g., "Base Set")
-    rarity: card.rarity || "Unknown", // ✅ Rarity (e.g., "Rare Holo")
-    types: card.types || [], // ✅ Pokémon type(s) (e.g., ["Fire"])
-    attacks: card.attacks || [], // ✅ Attack details (array)
-    weaknesses: card.weaknesses || [], // ✅ Weaknesses (array)
-    resistances: card.resistances || [], // ✅ Resistances (array)
-    hp: card.hp || "N/A", // ✅ HP value (e.g., "120")
-    evolvesFrom: card.evolvesFrom || null, // ✅ What Pokémon it evolves from
-    prices: card.tcgplayer?.prices || card.cardmarket?.prices || {}, // ✅ Pricing info
+    set: card.set?.name,
+    rarity: card.rarity || "Unknown",
+    types: card.types || [],
+    attacks: card.attacks || [],
+    weaknesses: card.weaknesses || [],
+    resistances: card.resistances || [],
+    hp: card.hp || "N/A",
+    evolvesFrom: card.evolvesFrom || null,
+    
+    // Handling prices and ensuring they exist
+    prices: {
+      marketPrice: card.tcgplayer?.prices?.normal?.market || null ,
+      holofoilMarketPrice: card.tcgplayer?.prices?.holofoil?.market || null,
+      cardmarketPrice: card.cardmarket?.prices?.averagePrice || null
+    },
   }));
 };
-
