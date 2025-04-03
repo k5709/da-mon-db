@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SearchBar from "./components/SearchBar";
 import CardList from "./components/CardList";
 import { useCardStore } from "./store/useCardStore";
+import "./index.css"
 
 const App = () => {
   const [cards, setCards] = useState([]);

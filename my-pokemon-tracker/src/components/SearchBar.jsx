@@ -15,6 +15,7 @@ const SearchBar = ({ onSearch }) => {
     <div className="flex gap-2 p-4">
       <input
         className="border rounded-lg p-2 w-full"
+        color="red"
         type="text"
         placeholder="Search for a Pokémon card..."
         value={query}
